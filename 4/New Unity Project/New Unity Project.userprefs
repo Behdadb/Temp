@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
+    <Files>
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="25" Column="4" />
+      <File FileName="..\..\..\..\..\..\Public\Documents\Unity Projects\Twinskaters\Source\TwinSkaters\Assets\Scripts\GameController.cs" Line="11" Column="32" />
+      <File FileName="..\..\..\..\..\..\Public\Documents\Unity Projects\Twinskaters\Source\TwinSkaters\Assets\Scripts\Controls.cs" Line="64" Column="3" />
+      <File FileName="..\..\..\..\2D\2D_platformer\New Unity Project\Assets\Scripts\Rotating.cs" Line="18" Column="91" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
