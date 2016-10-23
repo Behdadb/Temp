@@ -11,17 +11,26 @@ public class PlayerController : MonoBehaviour {
 
 	private float nextFire = 0.0f;
 	private int score;
+	private bool inCollision;
+	private Vector3 lastPos;
 	
 
 	// Use this for initialization
 	void Start () {
 		score = 0;
+		inCollision = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKey ("space") && Time.time > nextFire) {
+		if (inCollision) {
+			transform.position = lastPos;
+		}
+
+		lastPos = transform.position;
+
+		if ( (Input.GetKey ("space") || Input.GetKey ("return") || Input.GetButton("Fire1") ) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			GameObject bullet = Instantiate (Resources.Load("Prefabs/Bullet"), Vector3.zero, Quaternion.identity) as GameObject;
 			Destroy(bullet, bulletLifeTime);
@@ -50,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			
 		}
+
 		if (Input.GetKey ("down")){ // rotate down to the limit of -70 degrees (if -90 is facing ground directly)
 			
 			Quaternion rotation = transform.rotation;
@@ -60,16 +70,16 @@ public class PlayerController : MonoBehaviour {
 			
 		}
 		if (Input.GetKey ("d")) { // Going right in relative to the direction player is faced
-			
+
 			transform.position += Vector3.back * Mathf.Sin((transform.eulerAngles.y * Mathf.PI ) / 180f) * Time.deltaTime * movementSpeed;
 			transform.position += Vector3.right * Mathf.Cos((transform.eulerAngles.y * Mathf.PI ) / 180f) * Time.deltaTime * movementSpeed;
-			
+		
 		}
 		if (Input.GetKey ("a")) { // Going left in relative to the direction player is faced
-			
+
 			transform.position += Vector3.forward * Mathf.Sin((transform.eulerAngles.y * Mathf.PI ) / 180f) * Time.deltaTime * movementSpeed;
 			transform.position += Vector3.left * Mathf.Cos((transform.eulerAngles.y * Mathf.PI ) / 180f) * Time.deltaTime * movementSpeed;
-			
+
 		}
 		if (Input.GetKey ("w")) {	// Going forward in relative to the direction player is faced
 
@@ -83,6 +93,18 @@ public class PlayerController : MonoBehaviour {
 			transform.position += Vector3.back * Mathf.Cos((transform.eulerAngles.y * Mathf.PI ) / 180f) * Time.deltaTime * movementSpeed;
 			transform.position += Vector3.left * Mathf.Sin((transform.eulerAngles.y * Mathf.PI ) / 180f) * Time.deltaTime * movementSpeed;
 
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
+		if (other.tag == "Wall") {
+			inCollision = true;
+		}
+	}
+
+	void OnTriggerExit(Collider other){
+		if (other.tag == "Wall") {
+			inCollision = false;
 		}
 	}
 
